@@ -170,7 +170,12 @@ def game_over(score):
         rainbow_flash() 
  
     # Display final score in the terminal 
-    print("Final Score:", score) 
+    sense.show_message(
+        "SCORE: " + str(score),
+        text_colour=WHITE,
+        back_colour=BLACK,
+        scroll_speed=0.05
+    )
  
     time.sleep(2) 
  
