@@ -8,7 +8,6 @@ sense = SenseHat()
 # GAME SETTINGS 
 # ----------------------------- 
  
-MAX_ROUNDS = 3
 MAX_LIVES = 3 
 TIME_LIMIT = 2 
  
@@ -186,12 +185,13 @@ def play_game():
  
     score = 0 
     lives = MAX_LIVES 
+    round_number = 1
  
     print("-----------------------------") 
     print("      ARROW REACTION GAME") 
     print("-----------------------------") 
     print("You have", lives, "lives.") 
-    print("You have", MAX_ROUNDS, "rounds.") 
+    print("Game ends when all lives are used.") 
     print() 
  
     # Show starting lives 
@@ -204,7 +204,7 @@ def play_game():
     # GAME LOOP 
     # ------------------------- 
  
-    for round_number in range(1, MAX_ROUNDS + 1): 
+    while lives > 0: 
  
         print("Round", round_number) 
  
@@ -266,31 +266,17 @@ def play_game():
             if lives == 0: 
                 game_over(score) 
                 return 
- 
+
+            show_lives(lives)
+            time.sleep(0.5)
+
         # Clear screen before next round 
         clear_screen() 
  
         # Short pause 
         time.sleep(0.3) 
- 
-    # ----------------------------- 
-    # PLAYER SURVIVED ALL 3 ROUNDS 
-    # ----------------------------- 
- 
-    clear_screen() 
- 
-    print("-----------------------------") 
-    print("       YOU FINISHED!") 
-    print("-----------------------------") 
-    print("Final Score:", score) 
- 
-    # Display a green success screen 
-    sense.clear(GREEN) 
- 
-    time.sleep(2) 
- 
-    clear_screen() 
- 
+
+        round_number += 1
  
 # ----------------------------- 
 # START GAME 
