@@ -186,22 +186,97 @@ def play_game():
 
     score = 0
     lives = MAX_LIVES
+    round_number = 1
 
     print("-----------------------------")
     print("      ARROW REACTION GAME")
     print("-----------------------------")
     print("You have", lives, "lives.")
-    print("You have", MAX_ROUNDS, "rounds.")
+    print("Game ends when all lives are used.")
     print()
 
     # Show starting lives
     show_lives(lives)
     time.sleep(1)
 
+    clear_screen()
+
+    while lives > 0:
+
+        print("Round", round_number)
+
+        # Randomly select an arrow direction
+        direction = random.choice(
+          ["up", "down", "left", "right"]
+        )
+
+        # Show the arrow on the LED matrix
+        show_arrow(direction)
+
+        # Record the start time
+        start_time = time.time()
+
+        # Wait for user input
+        event = sense.stick.wait_for_event()
+
+        reaction_time = time.time() - start_time
+
+        player_direction = event.direction
+
+        print("Arrow:", direction)
+        print("Player:", player_direction)
+        print("Reaction time:", round(reaction_time, 2), "seconds")
+
+        if(
+            event.action == "pressed"
+            and player_direction == direction
+            and reaction_time <= TIME_LIMIT
+        ):
+
+            score += 1
+
+            print("CORRECT!")
+            print("Score:", score)
+
+            sense.clear(GREEN)
+            time.sleep(0.3)
+
+        else:
+            lives -= 1
+
+            print("WRONG!")
+            print("Lives remaining:", lives)
+
+            sense.clear(RED)
+            time.sleep(0.3)
+
+            if lives > 0:
+                show_lives(lives)
+                time.sleep(0.5)
+
+            if lives <= 0:
+                game_over(score)
+                return
+
+        clear_screen()
+
+        time.sleep(0.3)
+
+        round_number += 1
+
+    clear_screen()
+
+    print("-----------------------------")
+    print(" YOU FINISHED!")
+    print("-----------------------------")
+    print("Final Score:", score)
+
+    sense.clear(GREEN)
+
+    time.sleep(2)
+
+    clear_screen()
+
+
+
 print("\nGame over!")
-
-
-
-
-
-
