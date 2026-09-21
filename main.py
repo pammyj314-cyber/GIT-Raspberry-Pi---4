@@ -221,6 +221,9 @@ def play_game():
  
         # Wait for joystick input 
         event = sense.stick.wait_for_event() 
+
+        while event.action != "pressed":
+            event = sense.stick.wait_for_event()
  
         # Calculate reaction time 
         reaction_time = time.time() - start_time 
