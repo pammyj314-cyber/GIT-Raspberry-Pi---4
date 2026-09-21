@@ -1,4 +1,4 @@
-# GIT-Raspberry-Pi 4
+# Arrow reaction game
 Raspberry Pi (Reaction game using joystick)
 This is a game that allows you to test your reaction time. 
 1. Arrows will appear on the screen, and you have to move your joystick in the same direction that the arrow is facing
