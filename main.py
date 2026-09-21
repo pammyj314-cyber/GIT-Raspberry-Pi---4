@@ -263,7 +263,7 @@ def play_game():
             time.sleep(0.3) 
  
             # Check if player has lost all lives 
-            if lives <= 0: 
+            if lives == 0: 
                 game_over(score) 
                 return 
  
