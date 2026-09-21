@@ -8,7 +8,7 @@ sense = SenseHat()
 # GAME SETTINGS 
 # ----------------------------- 
  
-MAX_ROUNDS = 5 
+MAX_ROUNDS = 3
 MAX_LIVES = 3 
 TIME_LIMIT = 2 
  
@@ -274,7 +274,7 @@ def play_game():
         time.sleep(0.3) 
  
     # ----------------------------- 
-    # PLAYER SURVIVED ALL 5 ROUNDS 
+    # PLAYER SURVIVED ALL 3 ROUNDS 
     # ----------------------------- 
  
     clear_screen() 
